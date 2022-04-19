@@ -1,0 +1,9 @@
+.linker {
+  text-decoration: none;
+  color: black;
+  transform: scale(0.9);
+  transition: all ease-in-out 0.2s;
+}
+.linker:hover {
+  transform: scale(1);
+}
