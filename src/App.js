@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Brewerypage from "./pages/Brewery_page";
 import Error from './components/error'
 import DetailBrewerypage from "./pages/DetailBrewery_page";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+
  class App extends Component {
      render(){
          return (

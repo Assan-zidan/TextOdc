@@ -1,19 +1,23 @@
 /**
  * @author assan zidan 
- * @description page to display detail of Brewery
+ * @description page qui affiche le detail d'un brewerry
  */
+
+import Loading from '../../components/Loading'
 import React, {useEffect, useState} from 'react'
 import axios from "axios"
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+
 function DetailBrewery_page() {
-  // recuperation des donnes passer en parametre lors du clic renvoyant sur ce composant
+  // recuperation des donnes passer en parametre lors du clic renvoyant sur cette page
   const { id_brewery } = useParams()
 
   const [datas, setdatas] = useState([])
+  const [isloading, setisloading] = useState(false)
 
-  // au montage du composant
+  // recuperation des informations de notre api au montage de la page
   useEffect(() => {
-    // requete qui recupere les donnes sur  une brasseries
+    setisloading(true)
     axios 
        .get(`https://api.openbrewerydb.org/breweries/${id_brewery}`
        )
@@ -21,35 +25,41 @@ function DetailBrewery_page() {
           const info = res.data
           console.log(info)
           setdatas(info)
+          setisloading(false)
        })
        .catch((e) => {
           console.log(e)
        })
  }, [])
+
   return (
     <>
-      <div className="container mt-5 text-center border px-4 py-5">
-        <div className="row">
-          <div className="col">
-            <p>name: {datas.name}
-              <br />
-              phone: {datas.phone}
-              <br />
-              state: {datas.state}
-              <br />
-              type: {datas.type}
-              <br />
-              country: {datas.country}
-              <br />
-              longitude: {datas.longitude}
-              <br />
-              latitude: {datas.latitude}
-              <br />
-              postal_code: {datas.postal_code}
-            </p>
+      <div className="container mt-5  border px-4 py-5">
+        { isloading ? (<p className="text-center"><Loading/></p>)
+         : (<div className="row">
+         <div className="col">
+           <p className='text-center'> <h2>{datas.name}</h2>
+             <br />
+             phone: {datas.phone}
+             <br />
+             state: {datas.state}
+             <br />
+             type: {datas.type}
+             <br />
+             country: {datas.country}
+             <br />
+             longitude: {datas.longitude}
+             <br />
+             latitude: {datas.latitude}
+             <br />
+             postal_code: {datas.postal_code}
+           </p>
+           <p className="text-start"> <Link to='/'><button className="btn btn-info">retour</button></Link> </p>
 
-          </div>
-          </div>  
+         </div>
+         </div>)}
+      
+          
       </div> 
     </>
   )

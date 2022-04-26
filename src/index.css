@@ -1,9 +1,13 @@
 .linker {
   text-decoration: none;
   color: black;
-  transform: scale(0.9);
-  transition: all ease-in-out 0.2s;
+  transform: scale(1);
+  transition: transform ease 0.3s;
 }
 .linker:hover {
-  transform: scale(1);
+  transform: scale(1.1);
+  color: rgb(30, 29, 29);
+}
+.linker:hover  h2 {
+  color: rgb(41, 41, 193);
 }

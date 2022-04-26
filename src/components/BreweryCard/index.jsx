@@ -8,16 +8,17 @@ export default function BreweryCard(props) {
   // destructuration 
     const { name,phone,city,state,type } = props
   return (
-    <div className="sahadow border ">
-      <h1>name: {name}</h1>
-      <h2>type: {type}
+    <div className="shadow border px-4 ">
+
+      <h2> {name}</h2>
+      <p>type: {type}
       <br />
         city:  {city}
       <br />
         phone:  {phone}
       <br />
-        state : {state}
-      </h2> 
+        state: {state}
+      </p> 
     </div>
    
   );
